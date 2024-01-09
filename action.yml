@@ -26,6 +26,10 @@ inputs:
     required: false
     description: "EXPERIMENTAL: Installation method of the Preevy CLI. Supported values: npm, gh-release or none"
     default: npm
+  working-directory:
+    required: false
+    description: "The working directory to run the Preevy CLI from. Defaults to the current working directory."
+    default: .
 outputs: {}
 runs:
   using: "composite"
@@ -88,3 +92,4 @@ runs:
         fi
 
         ${preevy_cmd} down ${opts} --profile '${{ inputs.profile-url }}' ${{ inputs.args }}
+      working-directory: ${{ inputs.working-directory }}
